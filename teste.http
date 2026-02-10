@@ -1,0 +1,11 @@
+### Criar um contato
+POST http://localhost:8080/contatos
+Content-Type: application/json
+
+{
+  "nome": "Vinicius Zapella",
+  "telefone": "99999-8888"
+}
+
+### Listar contatos
+GET http://localhost:8080/contatos
