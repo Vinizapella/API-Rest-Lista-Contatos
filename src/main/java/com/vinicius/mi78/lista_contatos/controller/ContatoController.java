@@ -22,4 +22,18 @@ public class ContatoController {
     public Contato salvar(@RequestBody Contato contato){
         return repository.save(contato);
     }
+
+    @DeleteMapping("/{id}")
+    public void excluir(@PathVariable Long id) {
+        repository.deleteById(id);
+    }
+
+    @PutMapping("/{id}")
+    public Contato atualizar(@PathVariable Long id, @RequestBody Contato contatoAtualizado) {
+        return repository.findById(id).map(contato -> {
+            contato.setNome(contatoAtualizado.getNome());
+            contato.setTelefone(contatoAtualizado.getTelefone());
+            return repository.save(contato);
+        }).orElseThrow(() -> new RuntimeException("Contato não encontrado!"));
+    }
 }
